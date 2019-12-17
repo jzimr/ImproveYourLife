@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cards>
+    <category>Physical</category>
+
+    <card>
+        <body>Go run</body>
+    </card>
+    <card>
+        <body>Go outside for 10 minutes</body>
+    </card>
+    <card>
+        <body>Do 10 pushups</body>
+    </card>
+</cards>
