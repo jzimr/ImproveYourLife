@@ -48,7 +48,7 @@ public class CardChildFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_card_child, container, false);
         TextView body = v.findViewById(R.id.basicCardBody);
 
-        CardXmlParser.CardInfo card = Repository.getAllCards().get(mNum);
+        CardXmlParser.CardInfo card = Repository.getInstance().getAllCards().get(mNum);
         body.setText(card.body);
 
         return v;

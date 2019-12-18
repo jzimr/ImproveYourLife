@@ -1,5 +1,6 @@
 package com.multicus.stoprelapsing;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -12,7 +13,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.multicus.stoprelapsing.Model.Repository;
+import com.multicus.stoprelapsing.Presenter.MainPresenter;
+import com.multicus.stoprelapsing.Utilities.ImageLoaderTask;
 import com.multicus.stoprelapsing.View.MainView;
+import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -24,29 +28,29 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
+
+    private MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // initialize Presenter
+        presenter = new MainPresenter(this);
+
         // initialize our Model Repository
         // todo: incorporate with MVP rules
         Repository.init(this);
 
-        // set the default home screen fragment
-        HomeFragment homeFragment = new HomeFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(homeFragment.LAYOUT_TO_USE, R.layout.fragment_home);
-        homeFragment.setArguments(bundle);
-        setShowingFragment(homeFragment);
+        // set a random background on app startup
+        presenter.setRandomBackground(this);
 
-        // set background todo(temporarily)
-        setBackground(R.drawable.abigail_mangum);
+        // set the default home screen fragment
+        setShowingFragment(new HomeFragment());
 
         // setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -106,25 +110,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        switch(item.getItemId()){
-            case R.id.nav_physical:
-                setShowingFragment(new CardViewpagerFragment());
-                break;
-        }
-
-        // todo: put all ifs below into switch case
-        if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_physical) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+        presenter.onNavigationItemSelected(id); // send to presenter
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -133,12 +119,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void setBackground(int imageId) {
-        ImageView homeBackground = findViewById(R.id.homeImageView);
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inScaled = false;
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId, options);
-
-        homeBackground.setImageBitmap(bitmap);
+        ImageLoaderTask.Dimens screenDim = ImageLoaderTask.getScreenDimensions(this);
+        Picasso.get()
+                .load(imageId)
+                .resize(screenDim.width, screenDim.height)
+                .centerCrop()
+                .into((ImageView)findViewById(R.id.homeImageView));
     }
 
     @Override
@@ -146,20 +132,6 @@ public class MainActivity extends AppCompatActivity
         ImageView homeBackground = findViewById(R.id.homeImageView);
 
         return homeBackground.getBackground();
-    }
-
-    @Override
-    public void setQuote(String quote) {
-        TextView quoteText = findViewById(R.id.homeQuoteText);
-
-        quoteText.setText(quote);
-    }
-
-    @Override
-    public String getQuote() {
-        TextView quoteText = findViewById(R.id.homeQuoteText);
-
-        return quoteText.getText().toString();
     }
 
     @Override
@@ -174,5 +146,17 @@ public class MainActivity extends AppCompatActivity
     @Override
     public Fragment getShowingFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.homeFrameLayout);
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
     }
 }

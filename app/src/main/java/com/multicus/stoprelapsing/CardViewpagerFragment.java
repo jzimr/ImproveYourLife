@@ -42,7 +42,7 @@ public class CardViewpagerFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return Repository.getAllCards().size();
+            return Repository.getInstance().getAllCards().size();
         }
 
         @Override

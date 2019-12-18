@@ -7,6 +7,7 @@ import com.multicus.stoprelapsing.R;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,12 @@ import java.util.List;
 public class Repository {
     private static Repository repo_instance = null;
 
-    private static ArrayList<CardXmlParser.CardInfo> cardInfos;
+    private ArrayList<CardXmlParser.CardInfo> cardInfos;
+    private ArrayList<ImageXmlParser.ImageInfo> imageInfos;
 
     private Repository() {
+        cardInfos = new ArrayList<>();
+        imageInfos = new ArrayList<>();
     }
 
     public static void init(Context context) {
@@ -31,14 +35,24 @@ public class Repository {
         repo_instance = new Repository();
 
         // read all cards
-        cardInfos = new ArrayList<>();
-        CardXmlParser parser = new CardXmlParser();
-        InputStream stream = new BufferedInputStream(context.getResources().openRawResource(R.raw.physical_cards));
+        CardXmlParser cardParser = new CardXmlParser();
+        InputStream cardStream = new BufferedInputStream(context.getResources().openRawResource(R.raw.physical_cards));
 
         try {
-            cardInfos.addAll(parser.parse(stream));
+            repo_instance.cardInfos.addAll(cardParser.parse(cardStream));
         } catch (Exception e) {
             Log.e("Repository init()", "Some error happened whilst trying to read cards from XML");
+            e.printStackTrace();
+        }
+
+        // read all images
+        ImageXmlParser imageParser = new ImageXmlParser();
+        InputStream imageStream = new BufferedInputStream(context.getResources().openRawResource(R.raw.background_images));
+
+        try {
+            repo_instance.imageInfos.addAll(imageParser.parse(imageStream));
+        } catch (Exception e) {
+            Log.e("Repository init()", "Some error happened whilst trying to read images from XML");
             e.printStackTrace();
         }
     }
@@ -55,11 +69,21 @@ public class Repository {
      *
      * @return a collection of CardInfo objects
      */
-    public static List<CardXmlParser.CardInfo> getAllCards() {
+    public List<CardXmlParser.CardInfo> getAllCards() {
         return cardInfos;
     }
 
+    /**
+     * Retrieve all images we have stored
+     *
+     * @return a collection of all ImageInfo objects
+     */
+    public List<ImageXmlParser.ImageInfo> getAllImages() {
+        return imageInfos;
+    }
+
     // todo count of all cards
+    // todo count of all images
 
 
 }
