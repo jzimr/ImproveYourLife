@@ -19,10 +19,12 @@ public class Repository {
 
     private ArrayList<CardXmlParser.CardInfo> cardInfos;
     private ArrayList<ImageXmlParser.ImageInfo> imageInfos;
+    private ArrayList<QuoteXmlParser.QuoteInfo> quoteInfos;
 
     private Repository() {
         cardInfos = new ArrayList<>();
         imageInfos = new ArrayList<>();
+        quoteInfos = new ArrayList<>();
     }
 
     public static void init(Context context) {
@@ -55,6 +57,17 @@ public class Repository {
             Log.e("Repository init()", "Some error happened whilst trying to read images from XML");
             e.printStackTrace();
         }
+
+        // read all quotes
+        QuoteXmlParser quoteParser = new QuoteXmlParser();
+        InputStream quoteStream = new BufferedInputStream(context.getResources().openRawResource(R.raw.quotes));
+
+        try {
+            repo_instance.quoteInfos.addAll(quoteParser.parse(quoteStream));
+        } catch (Exception e) {
+            Log.e("Repository init()", "Some error happened whilst trying to read quotes from XML");
+            e.printStackTrace();
+        }
     }
 
     public static Repository getInstance() {
@@ -82,8 +95,18 @@ public class Repository {
         return imageInfos;
     }
 
+    /**
+     * Retrieve all quotes we have stored
+     *
+     * @return a collection of all QuoteInfo objects
+     */
+    public List<QuoteXmlParser.QuoteInfo> getAllQuotes() {
+        return quoteInfos;
+    }
+
     // todo count of all cards
     // todo count of all images
+    // todo count of all quotes
 
 
 }

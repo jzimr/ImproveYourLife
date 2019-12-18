@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <images>
     <image>
-        <imageName>abigail_mangum</imageName>
-        <imageSrc>Photo by Abigail Mangum on Unsplash</imageSrc>
+        <name>abigail_mangum</name>
+        <src>Photo by Abigail Mangum on Unsplash</src>
     </image>
     <image>
-        <imageName>bence_horvai</imageName>
-        <imageSrc>Photo by Bence Horvai on Unsplash</imageSrc>
+        <name>bence_horvai</name>
+        <src>Photo by Bence Horvai on Unsplash</src>
     </image>
     <image>
-        <imageName>cedric_letsch</imageName>
-        <imageSrc>Photo by Cedric Letsch on Unsplash</imageSrc>
+        <name>cedric_letsch</name>
+        <src>Photo by Cedric Letsch on Unsplash</src>
     </image>
     <image>
-        <imageName>daniel_j_schwarz</imageName>
-        <imageSrc>Photo by Daniel J. Schwarz on Unsplash</imageSrc>
+        <name>daniel_j_schwarz</name>
+        <src>Photo by Daniel J. Schwarz on Unsplash</src>
     </image>
     <image>
-        <imageName>eberhard_grossgasteiger</imageName>
-        <imageSrc>Photo by eberhard grossgasteiger on Unsplash</imageSrc>
+        <name>eberhard_grossgasteiger</name>
+        <src>Photo by eberhard grossgasteiger on Unsplash</src>
     </image>
     <image>
-        <imageName>jeremy_bishop</imageName>
-        <imageSrc>Photo by Jeremy Bishop on Unsplash</imageSrc>
+        <name>jeremy_bishop</name>
+        <src>Photo by Jeremy Bishop on Unsplash</src>
     </image>
     <image>
-        <imageName>marcus_woodbridge</imageName>
-        <imageSrc>Photo by Marcus Woodbridge on Unsplash</imageSrc>
+        <name>marcus_woodbridge</name>
+        <src>Photo by Marcus Woodbridge on Unsplash</src>
     </image>
     <image>
-        <imageName>mark_boss</imageName>
-        <imageSrc>Photo by Mark Boss on Unsplash</imageSrc>
+        <name>mark_boss</name>
+        <src>Photo by Mark Boss on Unsplash</src>
     </image>
     <image>
-        <imageName>touann_gatouillat_vergos</imageName>
-        <imageSrc>Photo by Touann Gatouillat Vergos on Unsplash</imageSrc>
+        <name>touann_gatouillat_vergos</name>
+        <src>Photo by Touann Gatouillat Vergos on Unsplash</src>
     </image>
     <image>
-        <imageName>whoisbenjamin</imageName>
-        <imageSrc>Photo by Whoisbenjamin on Unsplash</imageSrc>
+        <name>whoisbenjamin</name>
+        <src>Photo by Whoisbenjamin on Unsplash</src>
     </image>
 </images>

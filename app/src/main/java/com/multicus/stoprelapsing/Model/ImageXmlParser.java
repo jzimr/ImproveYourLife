@@ -92,10 +92,10 @@ public class ImageXmlParser {
 
             String name = parser.getName();
             switch(name){
-                case "imageName":
+                case "name":
                     imageId = readId(parser);
                     break;
-                case "imageSrc":
+                case "src":
                     imageSrc = readSrc(parser);
                     break;
                 default:
@@ -108,9 +108,9 @@ public class ImageXmlParser {
     // process the id content in the Image
     private int readId(XmlPullParser parser) throws IOException, XmlPullParserException {
         // first get image name from xml
-        parser.require(XmlPullParser.START_TAG, ns, "imageName");
+        parser.require(XmlPullParser.START_TAG, ns, "name");
         String imageName = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "imageName");
+        parser.require(XmlPullParser.END_TAG, ns, "name");
 
         // then convert to resourceId
         int resID = getResId(imageName, R.drawable.class);
@@ -120,9 +120,9 @@ public class ImageXmlParser {
 
     // process the image source in the Image
     private String readSrc(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "imageSrc");
+        parser.require(XmlPullParser.START_TAG, ns, "src");
         String imageSrc = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "imageSrc");
+        parser.require(XmlPullParser.END_TAG, ns, "src");
         return imageSrc;
     }
 
