@@ -39,8 +39,7 @@
     </card>
     <card>
         <category>Spiritual</category>
-        <body>Premeditatio Malorum - Negative Thinking. Sit down in peace and quiet, and think of your worst fear becoming reality. Really engage in it.
-            What would happen? How would it happen? Then come back to the now and see that it is not reality.</body>
+        <body>Premeditatio Malorum - Negative Thinking. Sit down in peace and quiet, and think of your worst fear becoming reality. Really engage in it. What would happen? How would it happen? Then come back to the now and see that it is not reality.</body>
     </card>
     <card>
         <category>Spiritual</category>
@@ -78,10 +77,10 @@
     </card>
     <card>
         <category>Food</category>
-        <body>Find a new dish to prepapare today or tomorrow</body>
+        <body>Find a new dish to prepare today or tomorrow</body>
     </card>
 
-    <!-- Habits category -->
+    <!-- Habit category -->
     <card>
         <category>Habit</category>
         <body>Become comfortable being uncomfortable</body>
@@ -92,7 +91,6 @@
     </card>
     <card>
         <category>Habit</category>
-        <body>Mourning Pages. Sit with pen and paper for a few minutes every day and write own the chatter in your mind.
-            It doesn't have to be structured, write without thinking whatever comes to mind. Do it now as well</body>
+        <body>Mourning Pages. Sit with pen and paper for a few minutes every day and write own the chatter in your mind. It doesn't have to be structured, write without thinking whatever comes to mind. Do it now as well</body>
     </card>
 </cards>

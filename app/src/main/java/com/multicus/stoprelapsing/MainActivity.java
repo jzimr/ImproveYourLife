@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);           // automatically select Home menu-item
     }
 
     @Override
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        System.out.println("yes");
         // below is for "settings" menu
         /*
         // Inflate the menu; this adds items to the action bar if it is present.

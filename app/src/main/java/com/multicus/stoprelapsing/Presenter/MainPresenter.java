@@ -1,17 +1,15 @@
 package com.multicus.stoprelapsing.Presenter;
 
-import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.multicus.stoprelapsing.CardViewpagerFragment;
+import com.multicus.stoprelapsing.HomeFragment;
 import com.multicus.stoprelapsing.Model.ImageXmlParser;
 import com.multicus.stoprelapsing.Model.Repository;
 import com.multicus.stoprelapsing.R;
-import com.multicus.stoprelapsing.Utilities.ImageLoaderTask;
 import com.multicus.stoprelapsing.View.MainView;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Random;
@@ -39,24 +37,35 @@ public class MainPresenter implements BasePresenter {
      * @param itemId the id of the item clicked
      */
     public void onNavigationItemSelected(int itemId) {
+        Bundle bundle = new Bundle();
+        CardViewpagerFragment fragment = new CardViewpagerFragment();
+
         switch (itemId) {
+            case R.id.nav_home:
+                mMainView.setShowingFragment(new HomeFragment());
+                return;
             case R.id.nav_physical:
-                mMainView.setShowingFragment(new CardViewpagerFragment());
+                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Physical");
                 break;
+            case R.id.nav_spritual:
+                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Spiritual");
+                break;
+            case R.id.nav_mind:
+                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Mind");
+                break;
+            case R.id.nav_food:
+                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Food");
+                break;
+            case R.id.nav_habit:
+                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Habit");
+                break;
+            default:
+                return;
         }
 
-        // todo: put all ifs below into switch case
-        if (itemId == R.id.nav_gallery) {
-
-        } else if (itemId == R.id.nav_slideshow) {
-
-        } else if (itemId == R.id.nav_tools) {
-
-        } else if (itemId == R.id.nav_physical) {
-
-        } else if (itemId == R.id.nav_send) {
-
-        }
+        // initiate fragment
+        fragment.setArguments(bundle);
+        mMainView.setShowingFragment(fragment);
     }
 
     /**

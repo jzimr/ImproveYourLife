@@ -3,31 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group android:id="@+id/mainMenu" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/menu_home" />
+    </group>
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_physical"
             android:icon="@drawable/ic_menu_physical"
             android:title="@string/menu_physical" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_spritual"
+            android:icon="@drawable/ic_menu_spiritual"
+            android:title="@string/menu_spiritual" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_mind"
+            android:icon="@drawable/ic_menu_mind"
+            android:title="@string/menu_mind" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_food"
+            android:icon="@drawable/ic_menu_food"
+            android:title="@string/menu_food" />
+        <item
+            android:id="@+id/nav_habit"
+            android:icon="@drawable/ic_menu_habit"
+            android:title="@string/menu_habit" />
     </group>
 
-    <item android:title="Exercises">
+    <item android:title="WIP">
         <menu>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
+                android:title="WIP" />
         </menu>
     </item>
 
