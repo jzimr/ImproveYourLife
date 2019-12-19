@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cards>
+
+    <!-- Physical category -->
+    <card>
+        <category>Physical</category>
+        <body>Go out for 10 minutes</body>
+    </card>
+    <card>
+        <category>Physical</category>
+        <body>Lift/Cardio</body>
+    </card>
+    <card>
+        <category>Physical</category>
+        <body>Do the 5 Tibetan Rites </body>
+    </card>
+    <card>
+        <category>Physical</category>
+        <body>Clean up your room</body>
+    </card>
+    <card>
+        <category>Physical</category>
+        <body>Do 20 pushups</body>
+    </card>
+
+
+    <!-- Spiritual category -->
+    <card>
+        <category>Spiritual</category>
+        <body>Sit still for 10 minutes and just feel whatever comes.</body>
+    </card>
+    <card>
+        <category>Spiritual</category>
+        <body>Do the 5 Tibetan Rites</body>
+    </card>
+    <card>
+        <category>Spiritual</category>
+        <body>Think for 5 minutes things you are grateful for and really appreciate them.</body>
+    </card>
+    <card>
+        <category>Spiritual</category>
+        <body>Premeditatio Malorum - Negative Thinking. Sit down in peace and quiet, and think of your worst fear becoming reality. Really engage in it.
+            What would happen? How would it happen? Then come back to the now and see that it is not reality.</body>
+    </card>
+    <card>
+        <category>Spiritual</category>
+        <body>Mourning Pages. Sit down and write down all the chatter in your mind for a few minutes.</body>
+    </card>
+
+
+    <!-- Mind category -->
+    <card>
+        <category>Mind</category>
+        <body>Play guitar for 20 minutes.</body>
+    </card>
+    <card>
+        <category>Mind</category>
+        <body>Read 10 pages in a non-fiction book.</body>
+    </card>
+    <card>
+        <category>Mind</category>
+        <body>Search for a topic that seems interesting and research about it for 20 minutes.</body>
+    </card>
+    <card>
+        <category>Mind</category>
+        <body>Learn a new language for 20 minutes.</body>
+    </card>
+    <card>
+        <category>Mind</category>
+        <body>Play some solitaire for 20 minutes.</body>
+    </card>
+
+
+    <!-- Food category -->
+    <card>
+        <category>Food</category>
+        <body>Make som veggie stuff</body>
+    </card>
+    <card>
+        <category>Food</category>
+        <body>Find a new dish to prepapare today or tomorrow</body>
+    </card>
+
+    <!-- Habits category -->
+    <card>
+        <category>Habit</category>
+        <body>Become comfortable being uncomfortable</body>
+    </card>
+    <card>
+        <category>Habit</category>
+        <body>Stop complaining.</body>
+    </card>
+    <card>
+        <category>Habit</category>
+        <body>Mourning Pages. Sit with pen and paper for a few minutes every day and write own the chatter in your mind.
+            It doesn't have to be structured, write without thinking whatever comes to mind. Do it now as well</body>
+    </card>
+</cards>

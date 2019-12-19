@@ -53,13 +53,10 @@ public class CardXmlParser {
      */
     private List readCards(XmlPullParser parser) throws XmlPullParserException, IOException {
         List<CardInfo> cards = new ArrayList<>();
-        String category = null, body;
 
         parser.require(XmlPullParser.START_TAG, ns, "cards");
         // as long as not reached </cards>
         while (parser.next() != XmlPullParser.END_TAG) {
-            body = null;
-
             // skip the start tag <cards>
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -68,10 +65,8 @@ public class CardXmlParser {
             // look for the entry tags
             String name = parser.getName();
 
-            if(name.equals("category")){
-                category = readCategory(parser);
-            } else if (name.equals("card")) {
-                cards.add(readCard(parser, category));
+            if(name.equals("card")){
+                cards.add(readCard(parser));
             } else {
                 continue;
             }
@@ -79,18 +74,11 @@ public class CardXmlParser {
         return cards;
     }
 
-    // process the category
-    private String readCategory(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "category");
-        String category = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "category");
-        return category;
-    }
-
     // process the Card
-    private CardInfo readCard(XmlPullParser parser, String category) throws IOException, XmlPullParserException {
+    private CardInfo readCard(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, "card");
-        String body = null;
+        String category = "";
+        String body = "";
 
         // as long as not reached </card>
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -100,6 +88,9 @@ public class CardXmlParser {
 
             String name = parser.getName();
             switch(name){
+                case "category":
+                    category = readCategory(parser);
+                    break;
                 case "body":
                     body = readBody(parser);
                     break;
@@ -110,12 +101,21 @@ public class CardXmlParser {
         return new CardInfo(category, body);
     }
 
+    // process the category in the Card
+    private String readCategory(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "category");
+        String category = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "category");
+        return category;
+    }
+
+
     // process the body content in the Card
     private String readBody(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, "body");
-        String category = readText(parser);
+        String body = readText(parser);
         parser.require(XmlPullParser.END_TAG, ns, "body");
-        return category;
+        return body;
     }
 
 

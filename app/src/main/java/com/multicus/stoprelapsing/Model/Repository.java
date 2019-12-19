@@ -7,7 +7,6 @@ import com.multicus.stoprelapsing.R;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class Repository {
 
         // read all cards
         CardXmlParser cardParser = new CardXmlParser();
-        InputStream cardStream = new BufferedInputStream(context.getResources().openRawResource(R.raw.physical_cards));
+        InputStream cardStream = new BufferedInputStream(context.getResources().openRawResource(R.raw.cards));
 
         try {
             repo_instance.cardInfos.addAll(cardParser.parse(cardStream));
