@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.multicus.stoprelapsing.Model.Repository;
 
 public class CardViewpagerFragment extends Fragment {
@@ -17,6 +18,7 @@ public class CardViewpagerFragment extends Fragment {
 
     CardViewAdapter mAdapter;
     ViewPager mPager;
+    TabLayout mTabLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,7 +30,12 @@ public class CardViewpagerFragment extends Fragment {
         mAdapter = new CardViewAdapter(getFragmentManager(), bundle.getString(CATEGORY_TYPE));
 
         mPager = (ViewPager)v.findViewById(R.id.cardViewPager);
+        mTabLayout = (TabLayout) v.findViewById(R.id.cardTabDots);
         mPager.setAdapter(mAdapter);
+
+        // to enable dots at bottom to show how many cards there are.
+        // Thanks to @Juni: https://stackoverflow.com/questions/20586619/android-viewpager-with-bottom-dots
+        mTabLayout.setupWithViewPager(mPager, true);
 
         // Inflate the layout for this fragment
         return v;

@@ -11,7 +11,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#CCFF9800"
+        android:background="@color/colorCard"
         app:layout_constraintBottom_toBottomOf="@+id/basicCardBottomGD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
