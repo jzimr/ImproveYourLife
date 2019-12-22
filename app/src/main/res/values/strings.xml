@@ -13,4 +13,15 @@
     <string name="menu_mind">Mind</string>
     <string name="menu_food">Food</string>
     <string name="menu_habit">Habit</string>
+
+    <string name="home_bored_button">Boredom</string>
+    <string name="home_cravings_button">Cravings</string>
+    <string name="home_relapsed_button">Relapsed</string>
+
+    <!-- Shared Preferences file specifications -->
+    <string name="shared_preference_home">com.multicus.stoprelapsing.home_preferences</string>
+    <string name="saved_last_home_update">com.multicus.stoprelapsing.last_home_update</string>
+    <string name="saved_image_to_use">com.multicus.stoprelapsing.current_image_to_use</string>
+    <string name="saved_quote_to_use">com.multicus.stoprelapsing.current_quote_to_use</string>
+
 </resources>

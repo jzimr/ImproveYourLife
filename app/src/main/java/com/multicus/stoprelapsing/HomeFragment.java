@@ -27,6 +27,11 @@ public class HomeFragment extends Fragment implements HomeView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // set click listeners to be handled by presenter
+        //view.findViewById(R.id.homeBoredButton).setOnClickListener(v -> presenter.onClickedPanicButton(v));
+        //view.findViewById(R.id.homeCravingButton).setOnClickListener(v -> presenter.onClickedPanicButton(v));
+        //view.findViewById(R.id.homeRelapseButton).setOnClickListener(v -> presenter.onClickedPanicButton(v));
+
         // set a random quote on fragment creation
         presenter.setRandomQuote();
     }

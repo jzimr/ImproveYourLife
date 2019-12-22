@@ -1,8 +1,5 @@
 package com.multicus.stoprelapsing;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -44,10 +41,10 @@ public class MainActivity extends AppCompatActivity
 
         // initialize our Model Repository
         // todo: incorporate with MVP rules
-        Repository.init(this);
+        Repository.init(MainActivity.this);
 
-        // set a random background on app startup
-        presenter.setRandomBackground(this);
+        // set a selected background on app startup
+        presenter.setBackground();
 
         // set the default home screen fragment
         setShowingFragment(new HomeFragment());
@@ -80,7 +77,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        System.out.println("yes");
         // below is for "settings" menu
         /*
         // Inflate the menu; this adds items to the action bar if it is present.
