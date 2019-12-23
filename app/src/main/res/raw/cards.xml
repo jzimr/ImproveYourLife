@@ -5,6 +5,11 @@
     <card>
         <category>Physical</category>
         <body>Go out for 10 minutes</body>
+        <relevantbuttons type="array">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+        </relevantbuttons>
     </card>
     <card>
         <category>Physical</category>

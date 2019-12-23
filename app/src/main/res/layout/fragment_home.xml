@@ -14,45 +14,4 @@
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/homeBoredButton"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#4DFFFFFF"
-                    android:text="@string/home_bored_button"
-                    android:textColor="#A6FFFFFF"
-                    android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/homeCravingButton"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#4DFFFFFF"
-                    android:text="@string/home_cravings_button"
-                    android:textColor="#A6FFFFFF"
-                    android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/homeRelapseButton"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#4DFFFFFF"
-                    android:text="@string/home_relapsed_button"
-                    android:textColor="#A6FFFFFF"
-                    android:textSize="14sp" />
-
-        </LinearLayout>
-
 </LinearLayout>

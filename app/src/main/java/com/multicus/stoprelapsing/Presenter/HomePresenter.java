@@ -28,14 +28,6 @@ public class HomePresenter implements BasePresenter{
     }
 
     /**
-     * When user clicks on a button
-     * @param id the ID of the buttons clicked
-     */
-    public void handlepanicButtons(int id){
-        // todo
-    }
-
-    /**
      * When called will get a random quote and set it as the quote of the Home view
      */
     public void setRandomQuote() {
