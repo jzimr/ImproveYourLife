@@ -12,10 +12,12 @@ import java.util.List;
 
 public class CardXmlParser {
     public static class CardInfo{
+        public final String id;
         public final String category;
         public final String body;
 
-        public CardInfo(String category, String body){
+        public CardInfo(String id, String category, String body){
+            this.id = id;
             this.category = category;
             this.body = body;
         }
@@ -77,6 +79,7 @@ public class CardXmlParser {
     // process the Card
     private CardInfo readCard(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, "card");
+        String id = "";
         String category = "";
         String body = "";
 
@@ -88,6 +91,9 @@ public class CardXmlParser {
 
             String name = parser.getName();
             switch(name){
+                case "id":
+                    id = readId(parser);
+                    break;
                 case "category":
                     category = readCategory(parser);
                     break;
@@ -98,7 +104,15 @@ public class CardXmlParser {
                     continue;
             }
         }
-        return new CardInfo(category, body);
+        return new CardInfo(id, category, body);
+    }
+
+    // process the id in the Card
+    private String readId(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "id");
+        String id = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "id");
+        return id;
     }
 
     // process the category in the Card

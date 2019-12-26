@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cards>
-
     <!-- Physical category -->
     <card>
+        <id>go_out</id>
         <category>Physical</category>
         <body>Go out for 10 minutes</body>
-        <relevantbuttons type="array">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-        </relevantbuttons>
     </card>
     <card>
+        <id>lift</id>
         <category>Physical</category>
         <body>Lift/Cardio</body>
     </card>
     <card>
-        <category>Physical</category>
-        <body>Do the 5 Tibetan Rites </body>
-    </card>
-    <card>
+        <id>clean_room</id>
         <category>Physical</category>
         <body>Clean up your room</body>
     </card>
     <card>
+        <id>pushups</id>
         <category>Physical</category>
         <body>Do 20 pushups</body>
     </card>
@@ -31,45 +25,50 @@
 
     <!-- Spiritual category -->
     <card>
+        <id>sit_still_meditate</id>
         <category>Spiritual</category>
         <body>Sit still for 10 minutes and just feel whatever comes.</body>
     </card>
     <card>
+        <id>tibetan_rites</id>
         <category>Spiritual</category>
         <body>Do the 5 Tibetan Rites</body>
     </card>
     <card>
+        <id>gratefulness</id>
         <category>Spiritual</category>
         <body>Think for 5 minutes things you are grateful for and really appreciate them.</body>
     </card>
     <card>
+        <id>premeditatio_malorum</id>
         <category>Spiritual</category>
         <body>Premeditatio Malorum - Negative Thinking. Sit down in peace and quiet, and think of your worst fear becoming reality. Really engage in it. What would happen? How would it happen? Then come back to the now and see that it is not reality.</body>
-    </card>
-    <card>
-        <category>Spiritual</category>
-        <body>Mourning Pages. Sit down and write down all the chatter in your mind for a few minutes.</body>
     </card>
 
 
     <!-- Mind category -->
     <card>
+        <id>play_guitar</id>
         <category>Mind</category>
         <body>Play guitar for 20 minutes.</body>
     </card>
     <card>
+        <id>read_pages_book</id>
         <category>Mind</category>
         <body>Read 10 pages in a non-fiction book.</body>
     </card>
     <card>
+        <id>research_topic</id>
         <category>Mind</category>
         <body>Search for a topic that seems interesting and research about it for 20 minutes.</body>
     </card>
     <card>
+        <id>learn_language</id>
         <category>Mind</category>
         <body>Learn a new language for 20 minutes.</body>
     </card>
     <card>
+        <id>play_solitaire</id>
         <category>Mind</category>
         <body>Play some solitaire for 20 minutes.</body>
     </card>
@@ -77,24 +76,29 @@
 
     <!-- Food category -->
     <card>
+        <id>prepare_veggies</id>
         <category>Food</category>
         <body>Make som veggie stuff</body>
     </card>
     <card>
+        <id>find_new_dish</id>
         <category>Food</category>
         <body>Find a new dish to prepare today or tomorrow</body>
     </card>
 
     <!-- Habit category -->
     <card>
+        <id>become_comfort_uncomfort</id>
         <category>Habit</category>
         <body>Become comfortable being uncomfortable</body>
     </card>
     <card>
+        <id>stop_complaining</id>
         <category>Habit</category>
         <body>Stop complaining.</body>
     </card>
     <card>
+        <id>mourning_pages</id>
         <category>Habit</category>
         <body>Mourning Pages. Sit with pen and paper for a few minutes every day and write own the chatter in your mind. It doesn't have to be structured, write without thinking whatever comes to mind. Do it now as well</body>
     </card>

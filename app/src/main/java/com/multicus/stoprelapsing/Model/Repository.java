@@ -2,8 +2,14 @@ package com.multicus.stoprelapsing.Model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Debug;
 import android.util.Log;
 
+import androidx.room.Room;
+
+import com.multicus.stoprelapsing.Model.Interactors.HelpedCardInteractor;
+import com.multicus.stoprelapsing.Model.Room.AppDatabase;
+import com.multicus.stoprelapsing.Model.Room.HelpedCard;
 import com.multicus.stoprelapsing.R;
 
 import java.io.BufferedInputStream;
@@ -17,8 +23,9 @@ import java.util.Random;
 /**
  * Singleton class that acts as the main gate to get/set permanent data in the application
  */
-public class Repository {
+public class Repository implements HelpedCardInteractor.OnFinishedListener {
     private static Repository repo_instance = null;
+    private static AppDatabase database;
 
     private HashMap<String, List<CardXmlParser.CardInfo>> cardInfos;    // key: category, value: cards
     private ImageXmlParser.ImageInfo currentImage;                  // the image that will be displayed on Home
@@ -26,24 +33,24 @@ public class Repository {
 
     private Repository() {
         cardInfos = new HashMap<>();
+        System.out.println("yes");
         currentImage = null;
         currentQuote = null;
     }
 
     public static void init(Context context) {
-        // if already initialized
-        /*
-        if (repo_instance != null) {
-            Log.e("Repository init()", "Repository has already been initialized!");
-            return;
+        // if not initialized yet
+        if (repo_instance == null || database == null) {
+            repo_instance = new Repository();
+            database = Room.databaseBuilder(context.getApplicationContext(),
+                    AppDatabase.class, "schedule-database").build();
         }
-         */
 
         long startTime = System.nanoTime(); // for debugging
 
-        repo_instance = new Repository();
         List<ImageXmlParser.ImageInfo> imageInfos = new ArrayList<>();
         List<QuoteXmlParser.QuoteInfo> quoteInfos = new ArrayList<>();
+        repo_instance.cardInfos = new HashMap<>();                      // we reset the hashmap
 
         /**
          * Read all cards
@@ -69,13 +76,8 @@ public class Repository {
                 }
             }
 
-
-            // we go through each category and randomize the cards inside
-            for (String key : repo_instance.cardInfos.keySet()) {
-                System.out.println(key);
-                List<CardXmlParser.CardInfo> cardsList = repo_instance.cardInfos.get(key);
-                Collections.shuffle(cardsList, new Random(System.nanoTime()));
-            }
+            // then we get all cards that have helped
+            HelpedCardInteractor.getAllHelpedCards(repo_instance, database);
 
         } catch (Exception e) {
             Log.e("Repository init()", "Some error happened whilst trying to read cards from XML");
@@ -109,7 +111,7 @@ public class Repository {
         }
 
         /**
-         * Get key-value pairs from internal storage
+         * Get/set key-value pairs in internal storage
          */
         int defaultValue = 0;   // default value if last image update not found
         SharedPreferences sharedPref = context.getSharedPreferences(context.getResources().getString(R.string.shared_preference_home), Context.MODE_PRIVATE);
@@ -120,7 +122,7 @@ public class Repository {
         int storedQuoteIndex = sharedPref.getInt(context.getResources().getString(R.string.saved_quote_to_use), defaultValue);
 
         // no value has been set yet (first-time start) OR if at least 12 hours have passed since last update
-        if(lastHomeUpdate == 0 || lastHomeUpdate + 43200000 < System.currentTimeMillis()){
+        if (lastHomeUpdate == 0 || lastHomeUpdate + 43200000 < System.currentTimeMillis()) {
             SharedPreferences.Editor editor = sharedPref.edit();
             Random rnd = new Random(System.currentTimeMillis());
             storedImageIndex = rnd.nextInt(imageInfos.size());
@@ -136,7 +138,6 @@ public class Repository {
         // we set the images and quotes that are to be displayed
         repo_instance.currentImage = imageInfos.get(storedImageIndex);
         repo_instance.currentQuote = quoteInfos.get(storedQuoteIndex);
-
 
         Log.d("Repository init()", "Initiation of data took: " + ((System.nanoTime() - startTime) / 1000000) + "ms");
     }
@@ -184,10 +185,58 @@ public class Repository {
         return currentQuote;
     }
 
+    /**
+     * Add the "helped" card to the database
+     *
+     * @param cardId the ID of the specific card that helped
+     */
+    public void addHelpedCard(String cardId) {
+        HelpedCardInteractor.addHelpedCard(cardId, database);
+    }
+
+    @Override
+    public void onFinishedGettingHelpedCards(List<HelpedCard> helpedCards) {
+        Random rnd = new Random(System.currentTimeMillis());
+        Collections.shuffle(helpedCards, rnd);      // we shuffle our helped cards
+
+        // How "Featured Cards" will work
+        //
+        // On each card is a "see this card more often" button. When user clicks this, it will be
+        // stored in DB. So when user starts app again, two things will happen:
+        //
+        // 1. There is a 40% chance in each category that a "featured card" will even show up
+        // 2. If the 40% is hit, we go through all "helped" cards and check if we have any of
+        //    those in this category. If yes, we take the first card we find and put it to the
+        //    front of the list.
+
+
+        for (String category : cardInfos.keySet()) {
+            // we shuffle the cards in category
+            Collections.shuffle(cardInfos.get(category), rnd);
+
+            // then check if category should have "featured card" (40% chance atm)
+            if (rnd.nextFloat() < 0.40) {
+                // we loop through to see if we have any "helped cards" in the category
+                List<CardXmlParser.CardInfo> subCardInfos = cardInfos.get(category);
+                for (int i = 0; i < subCardInfos.size(); i++) {
+                    final CardXmlParser.CardInfo cardToCheck = subCardInfos.get(i);
+
+                    // check if we have such a helpedCard
+                    if (helpedCards.stream().anyMatch(h -> h.cardId.equals(cardToCheck.id))) {
+                        // Yes. So we choose this card as the one to be featured (adding to front of list)
+                        CardXmlParser.CardInfo chosenCard = cardInfos.get(category).remove(i);
+                        cardInfos.get(category).add(0, chosenCard);
+
+                        Log.d("Repository onFinishedGettingHelpedCards()", "Chosen card " +
+                                chosenCard.id + " in category " + chosenCard.category + " to be featured");
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     // todo count of all cards
     // todo count of all images
     // todo count of all quotes
-
-
 }

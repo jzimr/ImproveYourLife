@@ -10,13 +10,17 @@ import androidx.fragment.app.Fragment;
 
 import com.multicus.stoprelapsing.Model.CardXmlParser;
 import com.multicus.stoprelapsing.Model.Repository;
+import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
+import com.multicus.stoprelapsing.View.CardChildView;
 
 
-public class CardChildFragment extends Fragment {
+public class CardChildFragment extends Fragment implements CardChildView {
     public static final String CATEGORY_TYPE = CardViewpagerFragment.CATEGORY_TYPE;
 
+    private CardChildPresenter presenter;
     private int mNum;   // the position of this fragment in the list
-    private String category;    // the category of the card
+    private String category;
+    private CardXmlParser.CardInfo card;    // the card object of this object
 
     /**
      * Create a new instance of CardChildFragment, providing "num"
@@ -31,6 +35,8 @@ public class CardChildFragment extends Fragment {
         args.putString(CATEGORY_TYPE, category);
         fragment.setArguments(args);
 
+        fragment.card = Repository.getInstance().getCards(category).get(num);    // the card we got
+
         return fragment;
     }
 
@@ -42,6 +48,8 @@ public class CardChildFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mNum = getArguments() != null ? getArguments().getInt("num") : 1;
         category = getArguments() != null ? getArguments().getString(CATEGORY_TYPE) : "";
+
+        presenter = new CardChildPresenter(this);
     }
 
     /**
@@ -51,11 +59,18 @@ public class CardChildFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_card_child, container, false);
-        TextView body = v.findViewById(R.id.basicCardBody);
+        TextView cardBody = v.findViewById(R.id.basicCardBody);
 
-        CardXmlParser.CardInfo card = Repository.getInstance().getCards(category).get(mNum);
-        body.setText(card.body);
+        cardBody.setText(card.body);
 
         return v;
+    }
+
+    /**
+     * Get the unique ID of the card belonging to this fragment
+     * @return the ID of the card
+     */
+    public String getCardId(){
+        return card.id;
     }
 }

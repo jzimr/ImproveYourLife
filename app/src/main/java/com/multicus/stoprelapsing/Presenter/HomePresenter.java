@@ -1,14 +1,8 @@
 package com.multicus.stoprelapsing.Presenter;
 
-import android.util.Log;
-import android.view.View;
-
 import com.multicus.stoprelapsing.Model.QuoteXmlParser;
 import com.multicus.stoprelapsing.Model.Repository;
 import com.multicus.stoprelapsing.View.HomeView;
-
-import java.util.List;
-import java.util.Random;
 
 public class HomePresenter implements BasePresenter{
     private HomeView homeView;

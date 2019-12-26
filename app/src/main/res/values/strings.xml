@@ -14,9 +14,7 @@
     <string name="menu_food">Food</string>
     <string name="menu_habit">Habit</string>
 
-    <string name="home_bored_button">Boredom</string>
-    <string name="home_cravings_button">Cravings</string>
-    <string name="home_relapsed_button">Relapsed</string>
+    <string name="cards_it_helped_button">✓ Show this card\nmore often</string>
 
     <!-- Shared Preferences file specifications -->
     <string name="shared_preference_home">com.multicus.stoprelapsing.home_preferences</string>
