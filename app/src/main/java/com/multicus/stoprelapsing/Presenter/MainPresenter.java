@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.multicus.stoprelapsing.CardViewpagerFragment;
 import com.multicus.stoprelapsing.HomeFragment;
 import com.multicus.stoprelapsing.Model.ImageXmlParser;
+import com.multicus.stoprelapsing.Model.Interactors.HomeInteractor;
 import com.multicus.stoprelapsing.Model.Repository;
 import com.multicus.stoprelapsing.R;
 import com.multicus.stoprelapsing.View.MainView;
@@ -69,7 +70,7 @@ public class MainPresenter implements BasePresenter {
      */
     public void setBackground() {
         // get list of all available images
-        ImageXmlParser.ImageInfo image = Repository.getInstance().getCurrentImage();
+        ImageXmlParser.ImageInfo image = HomeInteractor.getInstance().getCurrentImage();
 
         mMainView.setBackground(image.imageId);
     }

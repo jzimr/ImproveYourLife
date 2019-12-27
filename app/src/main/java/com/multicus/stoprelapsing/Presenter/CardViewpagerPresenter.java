@@ -1,6 +1,8 @@
 package com.multicus.stoprelapsing.Presenter;
 
+import com.multicus.stoprelapsing.Model.Interactors.HelpedCardInteractor;
 import com.multicus.stoprelapsing.Model.Repository;
+import com.multicus.stoprelapsing.Model.Room.HelpedCard;
 import com.multicus.stoprelapsing.View.CardViewpagerView;
 
 public class CardViewpagerPresenter implements BasePresenter{
@@ -23,7 +25,8 @@ public class CardViewpagerPresenter implements BasePresenter{
      * @param cardClickedId the ID of the card the button belonged to
      */
     public void onHelpedCardButtonClick(String cardClickedId){
+        // todo add UI listener
         System.out.println(cardClickedId);
-        Repository.getInstance().addHelpedCard(cardClickedId);
+        HelpedCardInteractor.getInstance().addHelpedCard(new HelpedCard(cardClickedId), null);
     }
 }

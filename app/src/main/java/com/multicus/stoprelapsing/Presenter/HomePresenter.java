@@ -1,5 +1,6 @@
 package com.multicus.stoprelapsing.Presenter;
 
+import com.multicus.stoprelapsing.Model.Interactors.HomeInteractor;
 import com.multicus.stoprelapsing.Model.QuoteXmlParser;
 import com.multicus.stoprelapsing.Model.Repository;
 import com.multicus.stoprelapsing.View.HomeView;
@@ -26,7 +27,7 @@ public class HomePresenter implements BasePresenter{
      */
     public void setRandomQuote() {
         // get list of all available quote
-        QuoteXmlParser.QuoteInfo quote = Repository.getInstance().getCurrentQuote();
+        QuoteXmlParser.QuoteInfo quote = HomeInteractor.getInstance().getCurrentQuote();
 
         homeView.setQuote("\"" + quote.content + "\" \n- " + quote.author);
     }

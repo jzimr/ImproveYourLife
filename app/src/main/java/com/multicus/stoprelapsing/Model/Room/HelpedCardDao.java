@@ -1,6 +1,7 @@
 package com.multicus.stoprelapsing.Model.Room;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -12,8 +13,11 @@ public interface HelpedCardDao {
     @Insert
     void insertHelpedCard(HelpedCard card);
 
-    @Update
-    void updateHelpedCard(HelpedCard card);
+    @Query("DELETE FROM helpedcard WHERE cardId = :cardId")
+    void deleteHelpedCard(String cardId);
+
+    //@Update
+    //void updateHelpedCard(HelpedCard card);
 
     @Query("SELECT * FROM helpedcard WHERE cardid = :cardId")
     HelpedCard getHelpedCard(String cardId);

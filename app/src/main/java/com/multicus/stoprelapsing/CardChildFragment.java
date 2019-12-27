@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.multicus.stoprelapsing.Model.CardXmlParser;
-import com.multicus.stoprelapsing.Model.Repository;
+import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
 import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
 import com.multicus.stoprelapsing.View.CardChildView;
 
@@ -35,7 +35,7 @@ public class CardChildFragment extends Fragment implements CardChildView {
         args.putString(CATEGORY_TYPE, category);
         fragment.setArguments(args);
 
-        fragment.card = Repository.getInstance().getCards(category).get(num);    // the card we got
+        fragment.card = CardInteractor.getInstance().getAllCards(category).get(num);    // the card we got
 
         return fragment;
     }

@@ -12,8 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.multicus.stoprelapsing.Model.Repository;
-import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
+import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
 import com.multicus.stoprelapsing.Presenter.CardViewpagerPresenter;
 import com.multicus.stoprelapsing.View.CardViewpagerView;
 
@@ -71,7 +70,7 @@ public class CardViewpagerFragment extends Fragment implements CardViewpagerView
 
         @Override
         public int getCount() {
-            return Repository.getInstance().getCards(category).size();
+            return CardInteractor.getInstance().getAllCards(category).size();
         }
 
         @Override

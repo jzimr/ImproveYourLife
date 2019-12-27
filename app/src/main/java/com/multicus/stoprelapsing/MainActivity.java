@@ -6,9 +6,13 @@ import android.os.Bundle;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
+import com.multicus.stoprelapsing.Model.Interactors.HelpedCardInteractor;
+import com.multicus.stoprelapsing.Model.Interactors.HomeInteractor;
 import com.multicus.stoprelapsing.Model.Repository;
 import com.multicus.stoprelapsing.Presenter.MainPresenter;
 import com.multicus.stoprelapsing.Utilities.ImageLoaderTask;
@@ -39,9 +43,13 @@ public class MainActivity extends AppCompatActivity
         // initialize Presenter
         presenter = new MainPresenter(this);
 
-        // initialize our Model Repository
-        // todo: incorporate with MVP rules
+        // initialize our Repository + Interactors
+        long startTime = System.nanoTime(); // for debugging
         Repository.init(MainActivity.this);
+        HomeInteractor.init(MainActivity.this);
+        HelpedCardInteractor.init();                    // HelpedCards MUST be initialized before CardInteractor
+        CardInteractor.init(MainActivity.this);
+        Log.d("Repository init()", "Initiation of data took: " + ((System.nanoTime() - startTime) / 1000000) + "ms");
 
         // set a selected background on app startup
         presenter.setBackground();
