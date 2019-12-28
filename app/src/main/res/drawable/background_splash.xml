@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@color/colorCard"/>
+
+    <item>
+        <bitmap
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:gravity="center"
+            android:src="@drawable/ic_logo_tree"/>
+    </item>
+
+    <!--
+    <item android:drawable="@drawable/ic_launcher_foreground"/>
+    -->
+
+</layer-list>

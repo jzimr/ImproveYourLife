@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         HomeInteractor.init(MainActivity.this);
         HelpedCardInteractor.init();                    // HelpedCards MUST be initialized before CardInteractor
         CardInteractor.init(MainActivity.this);
-        Log.d("Repository init()", "Initiation of data took: " + ((System.nanoTime() - startTime) / 1000000) + "ms");
+        Log.d("Repository init()", "Initiation of Model data took: " + ((System.nanoTime() - startTime) / 1000000) + "ms");
 
         // set a selected background on app startup
         presenter.setBackground();
