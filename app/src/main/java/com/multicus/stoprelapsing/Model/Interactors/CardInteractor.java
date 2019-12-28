@@ -20,6 +20,7 @@ public class CardInteractor {
     private HashMap<String, List<CardXmlParser.CardInfo>> cardInfos;    // key: category, value: cards
 
     /*
+    // todo we need to check when the cardInfo's are officially ready.
     public interface OnFinishedListener {
         void onFinishedPreparingCards();
     }
@@ -69,13 +70,9 @@ public class CardInteractor {
         /*
          * Here we do the "Feature Cards" implementation
          */
-        HelpedCardInteractor.getInstance().getAllHelpedCards(new HelpedCardInteractor.OnFinishedListener() {
+        HelpedCardInteractor.getInstance().getAllHelpedCards(new HelpedCardInteractor.OnFinishedGettingAllListener() {
             @Override
-            public void onFinishedAddingHelpedCards(boolean success) {
-            }
-
-            @Override
-            public void onFinishedGettingHelpedCards(List<HelpedCard> helpedCards) {
+            public void onFinishedGettingAllHelpedCards(List<HelpedCard> helpedCards) {
                 Random rnd = new Random(System.currentTimeMillis());
                 HashMap<String, List<CardXmlParser.CardInfo>> cardInfos = card_instance.cardInfos;    // key: category, value: cards
                 Collections.shuffle(helpedCards, rnd);      // we shuffle our helped cards

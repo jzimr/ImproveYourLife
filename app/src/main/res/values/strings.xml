@@ -15,6 +15,7 @@
     <string name="menu_habit">Habit</string>
 
     <string name="cards_it_helped_button">✓ Show this card\nmore often</string>
+    <string name="cards_did_not_help_button">✕ Show this card\nless often</string>
 
     <!-- Shared Preferences file specifications -->
     <string name="shared_preference_home">com.multicus.stoprelapsing.home_preferences</string>

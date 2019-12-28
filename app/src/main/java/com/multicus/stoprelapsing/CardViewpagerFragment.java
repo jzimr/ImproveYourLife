@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,20 +12,15 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
-import com.multicus.stoprelapsing.Presenter.CardViewpagerPresenter;
-import com.multicus.stoprelapsing.View.CardViewpagerView;
 
-public class CardViewpagerFragment extends Fragment implements CardViewpagerView {
+public class CardViewpagerFragment extends Fragment {
     public static final String CATEGORY_TYPE = "CATEGORY_TYPE";
-
-    CardViewpagerPresenter presenter;
 
     CardViewAdapter mAdapter;
     ViewPager mPager;
     TabLayout mTabLayout;
 
     public CardViewpagerFragment() {
-        presenter = new CardViewpagerPresenter(this);
     }
 
     @Override
@@ -45,13 +39,6 @@ public class CardViewpagerFragment extends Fragment implements CardViewpagerView
         // to enable dots at bottom to show how many cards there are.
         // Thanks to @Juni: https://stackoverflow.com/questions/20586619/android-viewpager-with-bottom-dots
         mTabLayout.setupWithViewPager(mPager, true);
-
-        // set click listener for the "it helped" button
-        Button cardHelpedBtn = v.findViewById(R.id.cardHelpedButton);
-        cardHelpedBtn.setOnClickListener(btn -> presenter.onHelpedCardButtonClick(
-                // get the ID of the current card being showed
-                ((CardChildFragment) mAdapter.getItem(mPager.getCurrentItem())).getCardId())
-        );
 
         // Inflate the layout for this fragment
         return v;
