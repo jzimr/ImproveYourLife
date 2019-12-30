@@ -13,16 +13,15 @@ import com.multicus.stoprelapsing.Model.CardXmlParser;
 import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
 import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
 import com.multicus.stoprelapsing.View.CardChildView;
-import com.multicus.stoprelapsing.View.HelpedButtonView;
 
 
-public class CardChildFragment extends Fragment implements CardChildView, HelpedButtonView {
+public class CardChildFragment extends Fragment implements CardChildView {
     public static final String CATEGORY_TYPE = CardViewpagerFragment.CATEGORY_TYPE;
 
     private CardChildPresenter presenter;
     private Button helpedButton;
-    private int mNum;   // the position of this fragment in the list
-    private String category;
+    //private int mNum;   // the position of this fragment in the list
+    //private String category;
     private CardXmlParser.CardInfo card;    // the card object of this object
 
     /**
@@ -49,8 +48,8 @@ public class CardChildFragment extends Fragment implements CardChildView, Helped
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mNum = getArguments() != null ? getArguments().getInt("num") : 1;
-        category = getArguments() != null ? getArguments().getString(CATEGORY_TYPE) : "";
+        //mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+        //category = getArguments() != null ? getArguments().getString(CATEGORY_TYPE) : "";
     }
 
     /**
@@ -60,25 +59,28 @@ public class CardChildFragment extends Fragment implements CardChildView, Helped
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_card_child, container, false);
+        TextView cardTitle = v.findViewById(R.id.basicCardTitle);
         TextView cardBody = v.findViewById(R.id.basicCardBody);
+
         helpedButton = v.findViewById(R.id.cardHelpedButton);
         // set click listener for the "it helped" button
         helpedButton.setOnClickListener(btn -> presenter.onHelpedCardButtonClick(card.id));
 
+        cardTitle.setText(card.title);
         cardBody.setText(card.body);
 
-        presenter = new CardChildPresenter(getResources(), card.id,this, this);
+        presenter = new CardChildPresenter(getResources(), card.id,this);
 
         return v;
     }
 
     @Override
-    public void setButtonText(String newText) {
+    public void setHelpedButtonText(String newText) {
         helpedButton.setText(newText);
     }
 
     @Override
-    public String getButtonText() {
+    public String getHelpedButtonText() {
         return helpedButton.getText().toString();
     }
 }

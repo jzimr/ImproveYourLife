@@ -7,29 +7,26 @@ import com.multicus.stoprelapsing.Model.Interactors.HelpedCardInteractor;
 import com.multicus.stoprelapsing.Model.Room.HelpedCard;
 import com.multicus.stoprelapsing.R;
 import com.multicus.stoprelapsing.View.CardChildView;
-import com.multicus.stoprelapsing.View.HelpedButtonView;
 
 public class CardChildPresenter implements BasePresenter{
     String cardId = null;
     private boolean isHelpedCard = false;
     private CardChildView cardChildView;
-    private HelpedButtonView helpedButtonView;
     Resources resources;
 
-    public CardChildPresenter(Resources resources, String cardId, CardChildView cardChildView, HelpedButtonView helpedButtonView){
+    public CardChildPresenter(Resources resources, String cardId, CardChildView cardChildView){
         this.resources = resources;
         this.cardId = cardId;
         this.cardChildView = cardChildView;
-        this.helpedButtonView = helpedButtonView;
 
         // call database to check if this card is a helped card (doing for UI purposes)
         HelpedCardInteractor.getInstance().getHelpedCard(cardId, helpedCard -> {
             // if it is a helped card (we display option to user so that it can be undone if he wants)
             if(helpedCard != null && helpedCard.cardId.equals(cardId)){
                 isHelpedCard = true;
-                helpedButtonView.setButtonText(resources.getString(R.string.cards_did_not_help_button));
+                cardChildView.setHelpedButtonText(resources.getString(R.string.cards_did_not_help_button));
             } else {
-                helpedButtonView.setButtonText(resources.getString(R.string.cards_it_helped_button));
+                cardChildView.setHelpedButtonText(resources.getString(R.string.cards_it_helped_button));
             }
         });
     }
@@ -50,11 +47,11 @@ public class CardChildPresenter implements BasePresenter{
         // if it is a helped card (we display option to user that it can be undone)
         if(this.isHelpedCard){
             HelpedCardInteractor.getInstance().removeHelpedCard(cardClickedId, removingHelpedCardListener);
-            helpedButtonView.setButtonText(resources.getString(R.string.cards_it_helped_button));
+            cardChildView.setHelpedButtonText(resources.getString(R.string.cards_it_helped_button));
             this.isHelpedCard = false;
         } else {
             HelpedCardInteractor.getInstance().addHelpedCard(new HelpedCard(cardClickedId), addingHelpedCardListener);
-            helpedButtonView.setButtonText(resources.getString(R.string.cards_did_not_help_button));
+            cardChildView.setHelpedButtonText(resources.getString(R.string.cards_did_not_help_button));
             this.isHelpedCard = true;
         }
     }

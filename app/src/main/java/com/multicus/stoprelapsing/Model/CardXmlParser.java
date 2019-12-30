@@ -14,11 +14,13 @@ public class CardXmlParser {
     public static class CardInfo{
         public final String id;
         public final String category;
+        public final String title;
         public final String body;
 
-        public CardInfo(String id, String category, String body){
+        public CardInfo(String id, String category, String title, String body){
             this.id = id;
             this.category = category;
+            this.title = title;
             this.body = body;
         }
     }
@@ -81,6 +83,7 @@ public class CardXmlParser {
         parser.require(XmlPullParser.START_TAG, ns, "card");
         String id = "";
         String category = "";
+        String title = "";
         String body = "";
 
         // as long as not reached </card>
@@ -97,6 +100,9 @@ public class CardXmlParser {
                 case "category":
                     category = readCategory(parser);
                     break;
+                case "title":
+                    title = readTitle(parser);
+                    break;
                 case "body":
                     body = readBody(parser);
                     break;
@@ -104,7 +110,7 @@ public class CardXmlParser {
                     continue;
             }
         }
-        return new CardInfo(id, category, body);
+        return new CardInfo(id, category, title, body);
     }
 
     // process the id in the Card
@@ -121,6 +127,14 @@ public class CardXmlParser {
         String category = readText(parser);
         parser.require(XmlPullParser.END_TAG, ns, "category");
         return category;
+    }
+
+    // process the title in the Card
+    private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "title");
+        String title = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "title");
+        return title;
     }
 
 

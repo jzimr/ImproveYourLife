@@ -37,4 +37,7 @@ dependencies {
     // Room dependency
     implementation 'androidx.room:room-runtime:2.2.3'
     annotationProcessor 'androidx.room:room-compiler:2.2.3'
+
+    // for vertical viewpager
+    implementation 'com.github.prabhat1707:VerticalViewPager:1.0'
 }

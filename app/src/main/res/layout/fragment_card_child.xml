@@ -7,16 +7,6 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/colorCard"
-        app:layout_constraintBottom_toBottomOf="@+id/basicCardBottomGD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/basicCardTopGD" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/basicCardTopGD"
         android:layout_width="wrap_content"
@@ -30,6 +20,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/basicCardLeftGD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/basicCardRightGD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.99" />
 
     <Button
         android:id="@+id/cardHelpedButton"
@@ -45,27 +49,41 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/cardViewPager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/basicCardLinearLayout" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/basicCardLinearLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
+        android:background="@color/colorCard"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/basicCardBottomGD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/basicCardRightGD"
+        app:layout_constraintStart_toStartOf="@+id/basicCardLeftGD"
         app:layout_constraintTop_toTopOf="@+id/basicCardTopGD">
 
         <TextView
-            android:id="@+id/basicCardBody"
+            android:id="@+id/basicCardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            android:text="Some Title"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/basicCardBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif"
+            android:gravity="center"
             android:text="body"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
@@ -75,6 +93,7 @@
             app:autoSizeMinTextSize="16sp"
             app:autoSizeStepGranularity="2sp"
             app:autoSizeTextType="uniform" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
