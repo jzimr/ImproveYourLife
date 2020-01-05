@@ -5,25 +5,37 @@
         <id>go_out</id>
         <category>Physical</category>
         <title>Go out</title>
-        <body>Go out for 10 minutes</body>
+        <bodycontent type="array">
+            <content>Go out for 10 minutes</content>
+            <content>Going out is healthy for you :)</content>
+        </bodycontent>
     </card>
     <card>
         <id>lift</id>
         <category>Physical</category>
-        <title>Cardio or Weightlifting</title>
-        <body>Lift/Cardio</body>
+        <title>Cardio or Weightlifting</title>'
+        <bodycontent type="array">
+            <content>Lift/Cardio</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>clean_room</id>
         <category>Physical</category>
         <title>Clean your room</title>
-        <body>Clean up your room</body>
+        <bodycontent type="array">
+            <content>Clean up your room</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>pushups</id>
         <category>Physical</category>
         <title>Do pushups</title>
-        <body>Do 20 pushups</body>
+        <bodycontent type="array">
+            <content>Do 20 pushups</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
 
 
@@ -32,25 +44,37 @@
         <id>sit_still_meditate</id>
         <category>Spiritual</category>
         <title>Meditation</title>
-        <body>Sit still for 10 minutes and just feel whatever comes.</body>
+        <bodycontent type="array">
+            <content>Sit still for 10 minutes and just feel whatever comes.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>tibetan_rites</id>
         <category>Spiritual</category>
         <title>5 Tibetan Rites</title>
-        <body>Do the 5 Tibetan Rites</body>
+        <bodycontent type="array">
+            <content>Do the 5 Tibetan Rites</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>gratefulness</id>
         <category>Spiritual</category>
         <title>Gratefulness</title>
-        <body>Think for 5 minutes things you are grateful for and really appreciate them.</body>
+        <bodycontent type="array">
+            <content>Think for 5 minutes things you are grateful for and really appreciate them.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>premeditatio_malorum</id>
         <category>Spiritual</category>
         <title>Negative Thinking</title>
-        <body>Premeditatio Malorum - Negative Thinking. Sit down in peace and quiet, and think of your worst fear becoming reality. Really engage in it. What would happen? How would it happen? Then come back to the now and see that it is not reality.</body>
+        <bodycontent type="array">
+            <content>Premeditatio Malorum - Negative Thinking. Sit down in peace and quiet, and think of your worst fear becoming reality. Really engage in it. What would happen? How would it happen? Then come back to the now and see that it is not reality.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
 
 
@@ -59,31 +83,46 @@
         <id>play_guitar</id>
         <category>Mind</category>
         <title>Play guitar</title>
-        <body>Play guitar for 20 minutes.</body>
+        <bodycontent type="array">
+            <content>Play guitar for 20 minutes.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>read_pages_book</id>
         <category>Mind</category>
         <title>Read</title>
-        <body>Read 10 pages in a non-fiction book.</body>
+        <bodycontent type="array">
+            <content>Read 10 pages in a non-fiction book.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>research_topic</id>
         <category>Mind</category>
         <title>Research interests</title>
-        <body>Search for a topic that seems interesting and research about it for 20 minutes.</body>
+        <bodycontent type="array">
+            <content>Search for a topic that seems interesting and research about it for 20 minutes.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>learn_language</id>
         <category>Mind</category>
         <title>Learn a language</title>
-        <body>Learn a new language for 20 minutes.</body>
+        <bodycontent type="array">
+            <content>Learn a new language for 20 minutes.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>play_solitaire</id>
         <category>Mind</category>
         <title>Play solitaire</title>
-        <body>Play some solitaire for 20 minutes.</body>
+        <bodycontent type="array">
+            <content>Play some solitaire for 20 minutes.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
 
 
@@ -92,13 +131,19 @@
         <id>prepare_veggies</id>
         <category>Food</category>
         <title>Prepare Veggies</title>
-        <body>Make som veggie stuff</body>
+        <bodycontent type="array">
+            <content>Make som veggie stuff</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>find_new_dish</id>
         <category>Food</category>
         <title>Find a new Dish</title>
-        <body>Find a new dish to prepare today or tomorrow</body>
+        <bodycontent type="array">
+            <content>Find a new dish to prepare today or tomorrow</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
 
     <!-- Habit category -->
@@ -106,18 +151,27 @@
         <id>become_comfort_uncomfort</id>
         <category>Habit</category>
         <title>Become comfortable being uncomfortable</title>
-        <body>Become comfortable being uncomfortable</body>
+        <bodycontent type="array">
+            <content>Become comfortable being uncomfortable</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>stop_complaining</id>
         <category>Habit</category>
         <title>Stop complaining</title>
-        <body>Stop complaining.</body>
+        <bodycontent type="array">
+            <content>Stop complaining.</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
     <card>
         <id>mourning_pages</id>
         <category>Habit</category>
         <title>Mourning Pages</title>
-        <body>Mourning Pages. Sit with pen and paper for a few minutes every day and write own the chatter in your mind. It doesn't have to be structured, write without thinking whatever comes to mind. Do it now as well</body>
+        <bodycontent type="array">
+            <content>Mourning Pages. Sit with pen and paper for a few minutes every day and write own the chatter in your mind. It doesn't have to be structured, write without thinking whatever comes to mind. Do it now as well</content>
+            <content>Goingoutishealthy</content>
+        </bodycontent>
     </card>
 </cards>

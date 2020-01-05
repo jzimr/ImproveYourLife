@@ -6,7 +6,6 @@ import com.multicus.stoprelapsing.CardViewpagerFragment;
 import com.multicus.stoprelapsing.HomeFragment;
 import com.multicus.stoprelapsing.Model.ImageXmlParser;
 import com.multicus.stoprelapsing.Model.Interactors.HomeInteractor;
-import com.multicus.stoprelapsing.Model.Repository;
 import com.multicus.stoprelapsing.R;
 import com.multicus.stoprelapsing.View.MainView;
 
@@ -42,19 +41,19 @@ public class MainPresenter implements BasePresenter {
                 mMainView.setShowingFragment(new HomeFragment());
                 return;
             case R.id.nav_physical:
-                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Physical");
+                bundle.putString(CardViewpagerFragment.CARD_CATEGORY, "Physical");
                 break;
             case R.id.nav_spritual:
-                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Spiritual");
+                bundle.putString(CardViewpagerFragment.CARD_CATEGORY, "Spiritual");
                 break;
             case R.id.nav_mind:
-                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Mind");
+                bundle.putString(CardViewpagerFragment.CARD_CATEGORY, "Mind");
                 break;
             case R.id.nav_food:
-                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Food");
+                bundle.putString(CardViewpagerFragment.CARD_CATEGORY, "Food");
                 break;
             case R.id.nav_habit:
-                bundle.putString(CardViewpagerFragment.CATEGORY_TYPE, "Habit");
+                bundle.putString(CardViewpagerFragment.CARD_CATEGORY, "Habit");
                 break;
             default:
                 return;

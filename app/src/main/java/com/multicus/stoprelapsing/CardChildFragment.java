@@ -9,35 +9,40 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.multicus.stoprelapsing.Model.CardXmlParser;
-import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
 import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
 import com.multicus.stoprelapsing.View.CardChildView;
 
 
 public class CardChildFragment extends Fragment implements CardChildView {
-    public static final String CATEGORY_TYPE = CardViewpagerFragment.CATEGORY_TYPE;
+    public static final String CARD_NUM = CardViewpagerFragment.CARD_NUM;
+    public static final String CARD_ID = "CARD_ID";
+    public static final String CARD_CATEGORY = CardViewpagerFragment.CARD_CATEGORY;
+    public static final String CARD_TITLE = "CARD_TITLE";
+    public static final String CARD_BODY = "CARD_BODY";
 
     private CardChildPresenter presenter;
     private Button helpedButton;
-    //private int mNum;   // the position of this fragment in the list
-    //private String category;
-    private CardXmlParser.CardInfo card;    // the card object of this object
+    private int mNum;           // the position of this fragment in the list (of subcards)
+    private String id;          // the id of the card
+    private String category;    // the category of the card
+    private String title;       // the title of the card
+    private String body;        // the body of the card
 
     /**
      * Create a new instance of CardChildFragment, providing "num"
      * as an argument.
      */
-    static CardChildFragment newInstance(int num, String category) {
+    static CardChildFragment newInstance(int num, String cardId, String category, String title, String body) {
         CardChildFragment fragment = new CardChildFragment();
 
-        // Supply num input as an argument.
+        // Supply card info as arguments
         Bundle args = new Bundle();
-        args.putInt("num", num);
-        args.putString(CATEGORY_TYPE, category);
+        args.putInt(CARD_NUM, num);
+        args.putString(CARD_ID, cardId);
+        args.putString(CARD_CATEGORY, category);
+        args.putString(CARD_TITLE, title);
+        args.putString(CARD_BODY, body);
         fragment.setArguments(args);
-
-        fragment.card = CardInteractor.getInstance().getAllCards(category).get(num);    // the card we got
 
         return fragment;
     }
@@ -48,8 +53,12 @@ public class CardChildFragment extends Fragment implements CardChildView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mNum = getArguments() != null ? getArguments().getInt("num") : 1;
-        //category = getArguments() != null ? getArguments().getString(CATEGORY_TYPE) : "";
+
+        mNum = getArguments() != null ? getArguments().getInt(CARD_NUM) : 1;
+        id = getArguments() != null ? getArguments().getString(CARD_ID) : "";
+        category = getArguments() != null ? getArguments().getString(CARD_CATEGORY) : "";
+        title = getArguments() != null ? getArguments().getString(CARD_TITLE) : "";
+        body = getArguments() != null ? getArguments().getString(CARD_BODY) : "";
     }
 
     /**
@@ -64,12 +73,12 @@ public class CardChildFragment extends Fragment implements CardChildView {
 
         helpedButton = v.findViewById(R.id.cardHelpedButton);
         // set click listener for the "it helped" button
-        helpedButton.setOnClickListener(btn -> presenter.onHelpedCardButtonClick(card.id));
+        helpedButton.setOnClickListener(btn -> presenter.onHelpedCardButtonClick(id));
 
-        cardTitle.setText(card.title);
-        cardBody.setText(card.body);
+        cardTitle.setText(title);
+        cardBody.setText(body);
 
-        presenter = new CardChildPresenter(getResources(), card.id,this);
+        presenter = new CardChildPresenter(getResources(), id,this);
 
         return v;
     }

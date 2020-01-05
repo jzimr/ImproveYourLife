@@ -15,13 +15,13 @@ public class CardXmlParser {
         public final String id;
         public final String category;
         public final String title;
-        public final String body;
+        public final String[] cards;
 
-        public CardInfo(String id, String category, String title, String body){
+        public CardInfo(String id, String category, String title, String[] cards){
             this.id = id;
             this.category = category;
             this.title = title;
-            this.body = body;
+            this.cards = cards;
         }
     }
 
@@ -72,7 +72,7 @@ public class CardXmlParser {
             if(name.equals("card")){
                 cards.add(readCard(parser));
             } else {
-                continue;
+                skip(parser);
             }
         }
         return cards;
@@ -84,7 +84,7 @@ public class CardXmlParser {
         String id = "";
         String category = "";
         String title = "";
-        String body = "";
+        String[] bodyContents = new String[0];
 
         // as long as not reached </card>
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -103,14 +103,14 @@ public class CardXmlParser {
                 case "title":
                     title = readTitle(parser);
                     break;
-                case "body":
-                    body = readBody(parser);
+                case "bodycontent":
+                    bodyContents = readBodyContents(parser);
                     break;
                 default:
-                    continue;
+                    skip(parser);
             }
         }
-        return new CardInfo(id, category, title, body);
+        return new CardInfo(id, category, title, bodyContents);
     }
 
     // process the id in the Card
@@ -138,12 +138,36 @@ public class CardXmlParser {
     }
 
 
+    // process the body contents in the Card
+    private String[] readBodyContents(XmlPullParser parser) throws IOException, XmlPullParserException {
+        List<String> bodyContents = new ArrayList<>();
+
+        parser.require(XmlPullParser.START_TAG, ns, "bodycontent");
+        // as long as not reached </bodycontent>
+        while (parser.next() != XmlPullParser.END_TAG) {
+            // skip the start tag <bodycontent>
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            // look for the entry tags
+            String name = parser.getName();
+
+            if(name.equals("content")){
+                bodyContents.add(readContent(parser));
+            } else {
+                skip(parser);
+            }
+        }
+        return bodyContents.stream().toArray(String[]::new);
+    }
+
     // process the body content in the Card
-    private String readBody(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "body");
-        String body = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "body");
-        return body;
+    private String readContent(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "content");
+        String content = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "content");
+        return content;
     }
 
 
@@ -155,5 +179,22 @@ public class CardXmlParser {
             parser.nextTag();
         }
         return result;
+    }
+
+    private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
+        if (parser.getEventType() != XmlPullParser.START_TAG) {
+            throw new IllegalStateException();
+        }
+        int depth = 1;
+        while (depth != 0) {
+            switch (parser.next()) {
+                case XmlPullParser.END_TAG:
+                    depth--;
+                    break;
+                case XmlPullParser.START_TAG:
+                    depth++;
+                    break;
+            }
+        }
     }
 }
