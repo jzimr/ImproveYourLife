@@ -4,41 +4,39 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.emoiluj.doubleviewpager.HorizontalViewPager;
 import com.multicus.stoprelapsing.Model.CardXmlParser;
-import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
-import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
-import com.multicus.stoprelapsing.View.CardChildView;
-
-import java.util.List;
+import com.multicus.stoprelapsing.Presenter.HelpedButtonPresenter;
+import com.multicus.stoprelapsing.View.HelpedButtonView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 /**
+ * Specifies the vertical cards for one parent card
  * Taken mostly from: https://github.com/juliome10/DoubleViewPager/blob/master/DoubleViewPagerSample/src/main/java/com/emoiluj/doubleviewpagersample/VerticalPagerAdapter.java
  */
-public class VerticalPagerAdapter extends PagerAdapter {
+public class VerticalPagerAdapter extends PagerAdapter implements HelpedButtonView {
     // todo: check https://guides.codepath.com/android/viewpager-with-fragmentpageradapter#dynamic-viewpager-fragments
     // todo: for improved adapter when needed
 
     private Context mContext;
     private int mParent;            // horizontal card index
     private int mChilds;            // vertical cards amount
-    private CardChildPresenter mPresenter;
+
+    private Button mHelpedButton;
+    private HelpedButtonPresenter mPresenter;
 
     private CardXmlParser.CardInfo mCard;
 
-    public VerticalPagerAdapter(Context c, int parent, int childs, CardXmlParser.CardInfo card, CardChildPresenter presenter) {
+    public VerticalPagerAdapter(Context c, int parent, int childs, CardXmlParser.CardInfo card) {
         mContext = c;
         mParent = parent;
         mChilds = childs;
 
         mCard = card;       // the card we got
-
-        mPresenter = presenter;
     }
 
     public int getItemPosition(Object object) {
@@ -47,15 +45,7 @@ public class VerticalPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-
         return mChilds;
-            /*
-            if(CardInteractor.getInstance().getAllCards(category) == null){
-                System.out.println("wtf123123");
-            }
-            return CardInteractor.getInstance().getAllCards(category).size();
-
-             */
     }
 
     @Override
@@ -77,7 +67,6 @@ public class VerticalPagerAdapter extends PagerAdapter {
      */
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.fragment_card_child, null, false);
 
@@ -87,8 +76,28 @@ public class VerticalPagerAdapter extends PagerAdapter {
         cardTitle.setText(mCard.title);
         cardBody.setText(mCard.cards[position]);
 
-        //presenter = new CardChildPresenter(getResources(), id,this);
         container.addView(v);
         return v;
+    }
+
+    /**
+     * Set the button click listener to the specified presenter of this main card
+     * @param helpedButton
+     */
+    @Override
+    public void setButton(Button helpedButton) {
+        mHelpedButton = helpedButton;
+        mPresenter = new HelpedButtonPresenter(mContext.getResources(), this, mCard.id);
+        mHelpedButton.setOnClickListener(v -> mPresenter.onHelpedCardButtonClick(mCard.id));
+    }
+
+    @Override
+    public void setHelpedButtonText(String newText) {
+        mHelpedButton.setText(newText);
+    }
+
+    @Override
+    public String getHelpedButtonText() {
+        return mHelpedButton.getText().toString();
     }
 }

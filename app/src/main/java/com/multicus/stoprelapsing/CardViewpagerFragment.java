@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
@@ -14,26 +13,20 @@ import com.emoiluj.doubleviewpager.HorizontalViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.multicus.stoprelapsing.Model.CardXmlParser;
 import com.multicus.stoprelapsing.Model.Interactors.CardInteractor;
-import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
-import com.multicus.stoprelapsing.View.CardChildView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardViewpagerFragment extends Fragment implements CardChildView{
+public class CardViewpagerFragment extends Fragment {
     public static final String CARD_CATEGORY = "CARD_CATEGORY";
     public static final String CARD_NUM = "CARD_NUM";
 
     private DoubleViewPager mPager;
     TabLayout mTabLayout;
 
-    private Button helpedButton;
-    private CardChildPresenter mPresenter;
-
     private List<CardXmlParser.CardInfo> mCards;
     private String mCategory;
     private int horizontalChilds = 0;
-    //private CardChildPresenter presenter;
 
     public CardViewpagerFragment() {
     }
@@ -54,7 +47,7 @@ public class CardViewpagerFragment extends Fragment implements CardChildView{
         generateVerticalAdapters(verticalAdapters);
 
         mPager = v.findViewById(R.id.cardViewPager);
-        mPager.setAdapter(new MyOwnViewPager(getContext(), verticalAdapters));
+        mPager.setAdapter(new CustomHorizontalViewPager(getContext(), verticalAdapters));
         mTabLayout = (TabLayout) v.findViewById(R.id.cardTabDots);
 
         mPager.setOnPageChangeListener(onCardSwipe);
@@ -67,14 +60,6 @@ public class CardViewpagerFragment extends Fragment implements CardChildView{
         mTabLayout.getTabAt(0).select();    // auto-select the first tab
         // todo: add custom click listeners
 
-
-                /*
-        helpedButton = v.findViewById(R.id.cardHelpedButton);
-        // set click listener for the "it helped" button
-       helpedButton.setOnClickListener(btn -> presenter.onHelpedCardButtonClick());
-        mPresenter = new CardChildPresenter(getResources(), this);
-                 */
-
         // Inflate the layout for this fragment
         return v;
     }
@@ -84,7 +69,7 @@ public class CardViewpagerFragment extends Fragment implements CardChildView{
         for (int i = 0; i < horizontalChilds; i++) {
             CardXmlParser.CardInfo card = mCards.get(i);
 
-            verticalAdapters.add(new VerticalPagerAdapter(getActivity(), i, card.cards.length, card, mPresenter));
+            verticalAdapters.add(new VerticalPagerAdapter(getActivity(), i, card.cards.length, card));
         }
     }
 
@@ -105,16 +90,4 @@ public class CardViewpagerFragment extends Fragment implements CardChildView{
         @Override
         public void onPageScrollStateChanged(int state) { }
     };
-
-    @Override
-    public void setHelpedButtonText(String newText) {
-        helpedButton.setText(newText);
-    }
-
-    @Override
-    public String getHelpedButtonText() {
-        return helpedButton.getText().toString();
-    }
-
-
 }

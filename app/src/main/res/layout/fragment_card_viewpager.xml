@@ -9,14 +9,11 @@
         android:id="@+id/cardViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardHelpedButton"
+        app:layout_constraintBottom_toTopOf="@+id/cardTabDots"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-    </com.emoiluj.doubleviewpager.DoubleViewPager>
+        app:layout_constraintTop_toTopOf="parent"></com.emoiluj.doubleviewpager.DoubleViewPager>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/cardTabDots"
@@ -29,17 +26,4 @@
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp"/>
 
-    <Button
-        android:id="@+id/cardHelpedButton"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:backgroundTint="#4DFFFFFF"
-        android:text="@string/cards_it_helped_button"
-        android:textColor="#BCFFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardTabDots"
-        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

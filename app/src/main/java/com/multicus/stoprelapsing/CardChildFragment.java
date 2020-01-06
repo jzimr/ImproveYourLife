@@ -9,18 +9,17 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.multicus.stoprelapsing.Presenter.CardChildPresenter;
-import com.multicus.stoprelapsing.View.CardChildView;
+import com.multicus.stoprelapsing.Presenter.HelpedButtonPresenter;
 
 
-public class CardChildFragment extends Fragment implements CardChildView {
+public class CardChildFragment extends Fragment {
     public static final String CARD_NUM = CardViewpagerFragment.CARD_NUM;
     public static final String CARD_ID = "CARD_ID";
     public static final String CARD_CATEGORY = CardViewpagerFragment.CARD_CATEGORY;
     public static final String CARD_TITLE = "CARD_TITLE";
     public static final String CARD_BODY = "CARD_BODY";
 
-    private CardChildPresenter presenter;
+    private HelpedButtonPresenter presenter;
     private Button helpedButton;
     private int mNum;           // the position of this fragment in the list (of subcards)
     private String id;          // the id of the card
@@ -71,25 +70,11 @@ public class CardChildFragment extends Fragment implements CardChildView {
         TextView cardTitle = v.findViewById(R.id.basicCardTitle);
         TextView cardBody = v.findViewById(R.id.basicCardBody);
 
-        helpedButton = v.findViewById(R.id.cardHelpedButton);
-        // set click listener for the "it helped" button
-        helpedButton.setOnClickListener(btn -> presenter.onHelpedCardButtonClick(id));
-
         cardTitle.setText(title);
         cardBody.setText(body);
 
-        //presenter = new CardChildPresenter(getResources(), id,this);
+        //presenter = new HelpedButtonPresenter(getResources(), id,this);
 
         return v;
-    }
-
-    @Override
-    public void setHelpedButtonText(String newText) {
-        helpedButton.setText(newText);
-    }
-
-    @Override
-    public String getHelpedButtonText() {
-        return helpedButton.getText().toString();
     }
 }
