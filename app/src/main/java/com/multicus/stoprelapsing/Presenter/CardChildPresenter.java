@@ -9,16 +9,17 @@ import com.multicus.stoprelapsing.R;
 import com.multicus.stoprelapsing.View.CardChildView;
 
 public class CardChildPresenter implements BasePresenter{
-    String cardId = null;
+    //String cardId = null;
     private boolean isHelpedCard = false;
     private CardChildView cardChildView;
     Resources resources;
 
-    public CardChildPresenter(Resources resources, String cardId, CardChildView cardChildView){
+    public CardChildPresenter(Resources resources, CardChildView cardChildView){
         this.resources = resources;
-        this.cardId = cardId;
+        //this.cardId = cardId;
         this.cardChildView = cardChildView;
 
+        /*
         // call database to check if this card is a helped card (doing for UI purposes)
         HelpedCardInteractor.getInstance().getHelpedCard(cardId, helpedCard -> {
             // if it is a helped card (we display option to user so that it can be undone if he wants)
@@ -29,6 +30,7 @@ public class CardChildPresenter implements BasePresenter{
                 cardChildView.setHelpedButtonText(resources.getString(R.string.cards_it_helped_button));
             }
         });
+         */
     }
 
     @Override
@@ -59,7 +61,7 @@ public class CardChildPresenter implements BasePresenter{
     HelpedCardInteractor.OnFinishedAddingListener addingHelpedCardListener = success -> {
         // todo do UI stuff?
         if(success) {
-        Log.d("CardChildPresenter onFinishedAddingListener", "Card ID '" + cardId + "' has been added to database helper cards");
+        //Log.d("CardChildPresenter onFinishedAddingListener", "Card ID '" + cardId + "' has been added to database helper cards");
         } else {
             // ?
         }
@@ -68,7 +70,7 @@ public class CardChildPresenter implements BasePresenter{
     HelpedCardInteractor.OnFinishedRemovingListener removingHelpedCardListener = success -> {
         // todo do UI stuff?
         if(success) {
-            Log.d("CardChildPresenter OnFinishedRemovingListener", "Card ID '" + cardId + "' has been removed from database helper cards");
+           // Log.d("CardChildPresenter OnFinishedRemovingListener", "Card ID '" + cardId + "' has been removed from database helper cards");
         } else {
             // ?
         }

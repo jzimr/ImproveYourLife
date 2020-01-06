@@ -78,7 +78,7 @@ public class CardChildFragment extends Fragment implements CardChildView {
         cardTitle.setText(title);
         cardBody.setText(body);
 
-        presenter = new CardChildPresenter(getResources(), id,this);
+        //presenter = new CardChildPresenter(getResources(), id,this);
 
         return v;
     }

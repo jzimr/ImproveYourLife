@@ -93,7 +93,7 @@
         <category>Mind</category>
         <title>Read</title>
         <bodycontent type="array">
-            <content>Read 10 pages in a non-fiction book.</content>
+            <content>Read 10 pages in a non-fiction book. E.g. in Google books</content>
             <content>Goingoutishealthy</content>
         </bodycontent>
     </card>

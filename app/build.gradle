@@ -37,7 +37,8 @@ dependencies {
     // Room dependency
     implementation 'androidx.room:room-runtime:2.2.3'
     annotationProcessor 'androidx.room:room-compiler:2.2.3'
+    implementation project(path: ':DoubleViewPager')
 
     // for horizontal + vertical viewpager
-    implementation 'com.github.juliome10:DoubleViewPager:1.0.4@aar'
+    //implementation 'com.github.juliome10:DoubleViewPager:1.0.4@aar'
 }
