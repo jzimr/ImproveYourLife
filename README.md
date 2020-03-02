@@ -4,7 +4,7 @@ The cards are randomized on each start-up and cards can be favorised as well. Fa
 As well as the cards, the background and quotes are also randomized and changed once every few hours. 
 
 
-# Showcase
+## Showcase
 ![](github-files/starting-app.gif)
 ![](github-files/choosing-categories-and-cards.gif)
 ![](github-files/choosing-card-in-card.gif)
